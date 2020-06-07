@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: opsapp
+  name: opsapp
+  namespace: app-dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: opsapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: opsapp
+    spec:
+      containers:
+      - image: safeem/opstree:1.2
+        name: opstree
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}
