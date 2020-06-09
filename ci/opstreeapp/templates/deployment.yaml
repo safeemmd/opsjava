@@ -32,14 +32,6 @@ spec:
           command:
             - "catalina.sh"
             - "run"
-          livenessProbe:
-            httpGet:
-              path: /myapp/
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /myapp/
-              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.affinity }}
