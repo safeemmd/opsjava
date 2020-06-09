@@ -14,7 +14,7 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: opsapp
+          serviceName: {{ include "opstreeapp.fullname" . }}
           servicePort: 9090
         path: /myapp/
 {{- end -}}
