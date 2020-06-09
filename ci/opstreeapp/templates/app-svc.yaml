@@ -4,12 +4,13 @@ metadata:
   name: {{ include "opstreeapp.fullname" . }}
   labels:
     {{- include "opstreeapp.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  - name: 8080-8080
+    port: 9090
+    protocol: TCP
+    targetPort: 8080
   selector:
     {{- include "opstreeapp.selectorLabels" . | nindent 4 }}
