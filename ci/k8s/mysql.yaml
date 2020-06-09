@@ -23,6 +23,9 @@ spec:
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "password"
+          valueFrom:
+            secretKeyRef:
+              name: "mysqlsecret"
+              key: "dbpass"
         resources: {}
 status: {}

@@ -7,7 +7,7 @@ metadata:
   name: opsapp
   namespace: app-dev
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: opsapp
@@ -18,6 +18,16 @@ spec:
       labels:
         app: opsapp
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: failure-domain.beta.kubernetes.io/region
+                operator: In
+                values:
+                - us-east-1
+            topologyKey: "kubernetes.io/hostname"
       containers:
       - image: safeem/opstree:1.5
         name: opstree
